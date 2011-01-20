@@ -101,7 +101,11 @@ class UserController {
     }
 
     def createMultipleUsers = {
-        userService.createAndSaveMultipleUsers()
+        try{
+            userService.createAndSaveMultipleUsers()
+        } catch(RuntimeException rte){
+            log.error(rte.message)
+        }
         redirect(action: "list")
     }
 }

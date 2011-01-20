@@ -10,7 +10,12 @@ class UserService {
 
     def createAndSaveMultipleUsers(){
         (1..10).each{Integer i->
-            createAndSaveUser("Name ${i}", "password", "password")
+            if(i == 5){
+                throw new RuntimeException("Runtime exception occurred")
+            }
+            else{
+                createAndSaveUser("Name ${i}", "password", "password")
+            }
         }
     }
 
