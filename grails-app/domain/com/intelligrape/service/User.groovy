@@ -13,5 +13,11 @@ class User {
 			}
 		})
 		
-    	}
+    }
+
+    def userService
+
+    String formatName(){
+        return userService.formatUsername(this.name)
+    }
 }

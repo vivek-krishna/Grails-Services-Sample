@@ -32,7 +32,7 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="user.name.label" default="Name" /></td>
                             
-                            <td valign="top" class="value">${fieldValue(bean: userInstance, field: "name")}</td>
+                            <td valign="top" class="value">${userInstance.formatName()}</td>
                             
                         </tr>
                     

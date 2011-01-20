@@ -22,4 +22,8 @@ class UserService {
     def saveUser(User user){
         user.save(failOnError: true)
     }
+
+    String formatUsername(String name){
+        return "Dear ${name}"
+    }
 }
