@@ -3,6 +3,7 @@ package com.intelligrape.service
 class UserController {
 
     def userService
+    def nonTransactionalUserService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -104,6 +105,21 @@ class UserController {
         try{
             userService.createAndSaveMultipleUsers()
         } catch(RuntimeException rte){
+            log.error(rte.message)
+        }
+        redirect(action: "list")
+    }
+
+    def withTransactionSuccessful = {
+        nonTransactionalUserService.createAndSaveMultipleUsers()
+        redirect(action: "list")
+    }
+
+    def withTransactionFail = {
+        try{
+            nonTransactionalUserService.createAndSaveMultipleUsersWithException()
+        }
+        catch(RuntimeException rte){
             log.error(rte.message)
         }
         redirect(action: "list")
