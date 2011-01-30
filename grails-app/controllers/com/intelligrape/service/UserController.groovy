@@ -124,4 +124,20 @@ class UserController {
         }
         redirect(action: "list")
     }
+
+    def annotatedTransactionSuccessful = {
+        nonTransactionalUserService.createAndSaveMultipleUsersTransaction()
+        redirect(action: "list")
+
+    }
+
+    def annotatedTransactionFail = {
+        try{
+            nonTransactionalUserService.createAndSaveMultipleUsersWithExceptionTransacted()
+        }
+        catch(RuntimeException rte){
+            log.error(rte.message)
+        }
+        redirect(action: "list")
+    }
 }
